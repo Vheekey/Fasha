@@ -1,5 +1,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+# Fasha
+
+Laravel Fashion App
+>>>>>>> 234e34d2c7df7962e51977768892de7a459ba16a
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
@@ -83,7 +87,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 Empty laravel dist folder for quick laravel build
 >>>>>>> fae4da031703b3aba89ec6a3ba249395ea4b981e
 =======
-# Fasha
 
-Laravel Fashion App
->>>>>>> 234e34d2c7df7962e51977768892de7a459ba16a
