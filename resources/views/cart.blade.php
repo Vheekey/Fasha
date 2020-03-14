@@ -45,7 +45,7 @@
 								<li><a href="{{ url('/') }}">Home</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-									<li><a href="{{ url('/shop') }}" class="active">Products</a></li>
+										<li><a href="{{ url('/shop') }}">Products</a></li>
 										<li><a href="{{ url('/product-details') }}">Product Details</a></li> 
 										<li><a href="{{ url('/checkout') }}">Checkout</a></li> 
 										<li><a href="{{ url('/cart') }}" class="active">Cart</a></li> 
