@@ -43,4 +43,23 @@ class VendorController extends Controller
 
         
     }
+
+    //Each Vendor Get Product
+    public function getProducts(Request $request){
+        // $vendorID = $user->id;
+        
+        $vendorID = 1;
+        
+        $token = $request->_token;
+
+        $products = \DB::table('products')->where('vendor_id', '=', '1')
+                                            ->get();
+        if(empty($products)){
+            return back()->with('error', 'No records Found');
+        }else{
+            return json_encode($products, true);
+        }
+
+        
+    }
 }

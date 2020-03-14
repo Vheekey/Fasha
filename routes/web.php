@@ -61,3 +61,6 @@ Route::get('/vendor', function () {
 
 //vendor upload products
 Route::post('uploadProduct', 'VendorController@uploadProduct')->name('uploadProduct');
+
+//vendor upload products
+Route::post('getProducts', 'VendorController@getProducts')->name('getProducts');
