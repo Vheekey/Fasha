@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//views
 Route::get('/', function () {
     return view('welcome');
 });
@@ -56,3 +57,7 @@ Route::get('/vendor', function () {
 });
 
 
+//posts
+
+//vendor upload products
+Route::post('contact', 'VendorController@contact')->name('uploadProduct');

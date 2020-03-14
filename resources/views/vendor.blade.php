@@ -81,7 +81,8 @@
 				<div class="col-sm-3">
 					<div class="left-sidebar">
 						<h2>Add Products </h2>
-						<form action="" method="post" class="login-form" >
+                        @include('flashmessage')
+						<form action="/uploadProduct" method="post" class="login-form" >
                             <label for="">Product</label>
                             <input type="text" name="prodName" id="" placeholder = "Product Name" class="form-control">
                             <p></p>
@@ -89,10 +90,11 @@
                             <input type="text" name="prodDesc" id="" placeholder = "Product Description" class="form-control">
                             <p></p>
                             <label for="">Amount</label>
-                            <input type="text" name="prodAmount" id="" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" placeholder = "0.00" class="form-control">
+                            <input type="text" name="prodAmount" id="" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" placeholder = "500" class="form-control">
                             <p></p>
                             <label for="">Product Image</label>
                             <input type="file" name="prodImage" id="" accept="image/*" class="form-control">
+                            <input type = "hidden" name = "_token" value="{{csrf_token()}}">
                             <p></p>
                             <button type="submit"  class="btn  btn-dark pull-right" style="background-color:#FE980F; color:white; font-weight:bold" >Create</button>
                             
