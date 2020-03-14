@@ -82,7 +82,7 @@
 					<div class="left-sidebar">
 						<h2>Add Products </h2>
                         @include('flashmessage')
-						<form action="/uploadProduct" method="post" class="login-form" >
+						<form action="/uploadProduct" method="post" class="login-form" enctype="multipart/form-data" >
                             <label for="">Product</label>
                             <input type="text" name="prodName" id="" placeholder = "Product Name" class="form-control">
                             <p></p>

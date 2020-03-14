@@ -31,10 +31,16 @@ class VendorController extends Controller
             'productImage.required' => 'Choose Image'
         ]);
 
-        $inserted = \DB::table('users')->insert(
-            ['productName' => $productName, 'productDesc' => $productDesc, 'productPrice' => $productPrice, 'productStatus' => $productStatus, 'productImage' => $productImage]
+        $inserted = \DB::table('products')->insert(
+            ['vendor_id' => $vendorID, 'productName' => $productName, 'productDesc' => $productDesc, 'productPrice' => $productPrice, 'productStatus' => $productStatus, 'productImage' => $productImage]
         );
 
-        return back()->with('success', $inserted);
+        if($inserted < 1){
+            return back()->with('error', 'Operation Failed');
+        }else{
+            return back()->with('success', "Successfully Created");
+        }
+
+        
     }
 }

@@ -60,4 +60,4 @@ Route::get('/vendor', function () {
 //posts
 
 //vendor upload products
-Route::post('contact', 'VendorController@contact')->name('uploadProduct');
+Route::post('uploadProduct', 'VendorController@uploadProduct')->name('uploadProduct');
