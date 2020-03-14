@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Admin Dashboard</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-admin.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
 </head>
 <body>
