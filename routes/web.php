@@ -51,5 +51,8 @@ Route::get('/contactus', function () {
 Route::get('/admin', function () {
     return view('admin');
 });
+Route::get('/vendor', function () {
+    return view('vendor');
+});
 
 
