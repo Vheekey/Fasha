@@ -47,6 +47,7 @@ class VendorController extends Controller
     //Each Vendor Get Product
     public function getProducts(Request $request){
         // $vendorID = $user->id;
+        return json_encode($request);
         
         $vendorID = 1;
         
