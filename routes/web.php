@@ -17,9 +17,9 @@ if (App::environment('production')) {
 }
 
 //views
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/admin', function () {
     return view('admin');
@@ -71,3 +71,7 @@ Route::get('/admin', 'AdminController@adminPending')->name('admin');
 Route::get('/product/{action}/{id}', 'AdminController@adminAction')->name('action');
 //Admin all products
 Route::get('/admin-products', 'AdminController@adminAllProducts')->name('productss');
+
+#### User Activities ###
+//display only approved products
+Route::get('/', 'UserController@viewProducts')->name('home');
