@@ -130,7 +130,7 @@
             
             console.log('black');
             $.ajax({
-                type:'POST',
+                type:'GET',
                 url:"{{ route('getProducts') }}",
                 data:{'_token':'{{ csrf_token() }}'},
                 success:function(data){

@@ -52,18 +52,20 @@ Route::get('/404', function () {
 Route::get('/contactus', function () {
     return view('contactus');
 });
-Route::get('/admin', function () {
-    return view('admin');
-});
 Route::get('/vendor', function () {
     return view('vendor');
 });
 
 
-//posts
-
+#### Vendor Activities ###
 //vendor upload products
 Route::post('uploadProduct', 'VendorController@uploadProduct')->name('uploadProduct');
-
-//vendor upload products
+//vendor see products
 Route::post('getProducts', 'VendorController@getProducts')->name('getProducts');
+
+
+#### Admin Activities ###
+//Admin get pending products
+Route::get('/admin', 'AdminController@adminPending')->name('admin');
+//Admin approve products
+Route::get('/product/{action}/{id}', 'AdminController@adminAction')->name('action');
