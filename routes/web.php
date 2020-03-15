@@ -57,6 +57,7 @@ Route::get('/vendor', function () {
 });
 
 
+
 #### Vendor Activities ###
 //vendor upload products
 Route::post('uploadProduct', 'VendorController@uploadProduct')->name('uploadProduct');
@@ -68,3 +69,5 @@ Route::post('getProducts', 'VendorController@getProducts')->name('getProducts');
 Route::get('/admin', 'AdminController@adminPending')->name('admin');
 //Admin approve products
 Route::get('/product/{action}/{id}', 'AdminController@adminAction')->name('action');
+//Admin all products
+Route::get('/admin-products', 'AdminController@adminAllProducts')->name('productss');
