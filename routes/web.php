@@ -63,7 +63,6 @@ Route::post('uploadProduct', 'VendorController@uploadProduct')->name('uploadProd
 //vendor see products
 Route::post('getProducts', 'VendorController@getProducts')->name('getProducts');
 
-
 #### Admin Activities ###
 //Admin get pending products
 Route::get('/admin', 'AdminController@adminPending')->name('admin');
