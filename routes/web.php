@@ -28,9 +28,6 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 // User views
-Route::get('/login', function () {
-    return view('login');
-});
 Route::get('/cart', function () {
     return view('cart');
 });
