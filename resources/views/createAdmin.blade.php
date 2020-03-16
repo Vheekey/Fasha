@@ -73,20 +73,18 @@
 	</header><!--/header-->
 	
 	<section id="form"><!--form-->
-		<div class="container">
-		@include('flashmessage')
-		@if ($errors->any())
-			<div class="alert alert-danger">
-				<ul>
-					@foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-					@endforeach
-				</ul>
-			</div>
-		@endif
-			<div class="row">
-				
+		<div class="container">		
+			<div class="row">				
 				<div class="col-sm-4 col-sm-offset-1">
+					@if ($errors->any())
+						<div class="alert alert-danger">
+							<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
 					<div class="signup-form"><!--sign up form-->
 						<h2>New Administrator Signup!</h2>
 						<form action="/register/admin" method="POST">
@@ -106,6 +104,7 @@
 				</div>
 
 				<div class="col-sm-4 col-sm-offset-1">
+					@include('flashmessage')
 					<div class="login-form"><!--login form-->
 						<h2>Login to your Administrator account</h2>
 						<form method="POST" action="/login/admin">
