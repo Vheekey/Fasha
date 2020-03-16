@@ -77,18 +77,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
+				@include('flashmessage')
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form method="POST" action="{{ route('login') }}">
+						<form method="POST" action="/login/user">
 						@csrf
-							<input type="email" placeholder="Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
-							@error('email')
+							<input type="email" placeholder="Email Address" class="form-control @error('userEmail') is-invalid @enderror" name="userEmail" value="{{ old('userEmail') }}" required autocomplete="email" autofocus />
+							@error('userEmail')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>
 							@enderror
-							<input type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
-							@error('password')
+							<input type="password" placeholder="Password" class="form-control @error('userPassword') is-invalid @enderror" name="userPassword" required autocomplete="current-password"/>
+							@error('userPassword')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>

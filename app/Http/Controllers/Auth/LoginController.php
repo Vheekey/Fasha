@@ -48,6 +48,20 @@ class LoginController extends Controller
     }
 
     
+    public function userLogin(Request $request)
+    {
+        $this->validate($request, [
+            'userEmail'   => 'required|email',
+            'userPassword' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('admin')->attempt(['email' => $request->userEmail, 'password' => $request->userPassword], $request->get('remember'))) {
+
+            return redirect()->intended('/admin');
+        }
+        return back()->withInput($request->only('userEmail', 'remember'))->with('error', 'Login Failed, kindly confirm credentials');
+    }
+
     public function adminLogin(Request $request)
     {
         $this->validate($request, [

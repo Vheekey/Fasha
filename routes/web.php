@@ -24,6 +24,9 @@ Route::get('/', 'UserController@viewProducts')->name('home');
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
+//Login vendor
+Route::post('/login/user', 'Auth\LoginController@userLogin');
+
 //logout function
 Route::get('/logout', 'Auth\LoginController@logout');
 
