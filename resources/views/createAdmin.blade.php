@@ -23,7 +23,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-
 <body>
 	<header id="header"><!--header-->
 		@include('header')
@@ -75,28 +74,51 @@
 	
 	<section id="form"><!--form-->
 		<div class="container">
+		@include('flashmessage')
+		@if ($errors->any())
+			<div class="alert alert-danger">
+				<ul>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
 			<div class="row">
+				
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New Administrator Signup!</h2>
+						<form action="/register/admin" method="POST">
+						@csrf
+							<input type="text" placeholder="Name" id ="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus/>
+                            
+							<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address"/>
+                           
+							<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password"/>
+                           
+                            
+							<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password"/>
+                            
+							<button type="submit" class="btn btn-default">Signup</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
-						<form action="POST" action="{{ route('login') }}">
+						<h2>Login to your Administrator account</h2>
+						<form method="POST" action="/login/admin">
 						@csrf
-							<input type="email" placeholder="Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
-							@error('email')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-							@enderror
-							<input type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
-							@error('password')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-							@enderror
-							<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-							<label class="form-check-label" for="remember">
-								Keep Me signed in
-							</label>
+							<input type="email" placeholder="Email Address" class="form-control @error('adminEmail') is-invalid @enderror" name="adminEmail" value="{{ old('adminEmail') }}" required autocomplete="email" autofocus />
+							
+							<input type="password" placeholder="Password" class="form-control @error('adminPassword') is-invalid @enderror" name="adminPassword" required autocomplete="current-password"/>
+												
+                            <span>
+								<input type="checkbox" class="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> 
+								Keep me signed in
+							</span>
+							
 							
 							<button type="submit" class="btn btn-default">Login</button>
 							@if (Route::has('password.request'))
@@ -106,20 +128,6 @@
 							@endif
 						</form>
 					</div><!--/login form-->
-				</div>
-				<div class="col-sm-1">
-					<h2 class="or">OR</h2>
-				</div>
-				<div class="col-sm-4">
-					<div class="signup-form"><!--sign up form-->
-						<h2>New User Signup!</h2>
-						<form action="#">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
-							<button type="submit" class="btn btn-default">Signup</button>
-						</form>
-					</div><!--/sign up form-->
 				</div>
 			</div>
 		</div>

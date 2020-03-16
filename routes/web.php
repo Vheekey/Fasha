@@ -15,16 +15,19 @@ use Illuminate\Support\Facades\Route;
 if (App::environment('production')) {
     URL::forceScheme('https');
 }
+\Auth::routes();
 
-//views
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+######################## User Activities #####################################################################
 
-Route::get('/admin', function () {
-    return view('admin');
-});
+//display only approved products
+Route::get('/', 'UserController@viewProducts')->name('home');
 
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
+//logout function
+Route::get('/logout', 'Auth\LoginController@logout');
+
+// User views
 Route::get('/login', function () {
     return view('login');
 });
@@ -52,26 +55,57 @@ Route::get('/404', function () {
 Route::get('/contactus', function () {
     return view('contactus');
 });
-Route::get('/vendor', function () {
-    return view('vendor');
+
+####################################################################################################################
+#
+######################## Vendor Activities #########################################################################
+
+//vendor signup page
+Route::get('/vendor-signup', function () {
+    return view('vendor-signup');
 });
+//Register Vendor
+Route::post('/register/vendor', 'Auth\RegisterController@createVendor');
 
+//Login vendor
+Route::post('/login/vendor', 'Auth\LoginController@vendorLogin');
 
+//view vendor dashboard
+Route::get('/vendor', 'VendorController@index')->name('Dashboard')->middleware('auth.vendor');
 
-#### Vendor Activities ###
 //vendor upload products
 Route::post('uploadProduct', 'VendorController@uploadProduct')->name('uploadProduct');
+
 //vendor see products
 Route::post('getProducts', 'VendorController@getProducts')->name('getProducts');
 
-#### Admin Activities ###
-//Admin get pending products
-Route::get('/admin', 'AdminController@adminPending')->name('admin');
+########################################################################################################################
+                                                                                                                        #
+######################## Admin Activities ###############################################################################
+//vendor signup page
+Route::get('/createAdmin', function () {
+    return view('createAdmin');
+});
+
+//Register Admin
+Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
+
+//Admin Login
+Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+
+//Admin dashboard and get pending products
+Route::get('/admin', 'AdminController@adminPending')->name('admin')->middleware('auth.admin');
+
 //Admin approve products
 Route::get('/product/{action}/{id}', 'AdminController@adminAction')->name('action');
-//Admin all products
-Route::get('/admin-products', 'AdminController@adminAllProducts')->name('productss');
 
-#### User Activities ###
-//display only approved products
-Route::get('/', 'UserController@viewProducts')->name('home');
+//Admin all products
+Route::get('/admin-products', 'AdminController@adminAllProducts')->name('productss')->middleware('auth.admin');
+
+####################################################################################################################
+
+
+
+
+
+

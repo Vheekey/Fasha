@@ -23,7 +23,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-
 <body>
 	<header id="header"><!--header-->
 		@include('header')
@@ -75,28 +74,69 @@
 	
 	<section id="form"><!--form-->
 		<div class="container">
+
 			<div class="row">
+				
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New Vendor Signup!</h2>
+						<form action="/register/vendor" method="POST">
+						@csrf
+							<input type="text" placeholder="Name" id ="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus/>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+							<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address"/>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+							<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password"/>
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            
+							<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password"/>
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+							<button type="submit" class="btn btn-default">Signup</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
-						<form action="POST" action="{{ route('login') }}">
+						@include('flashmessage')
+
+						<h2>Login to your Vendor account</h2>
+						<form method="POST" action="/login/vendor">
 						@csrf
-							<input type="email" placeholder="Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
-							@error('email')
+							<input type="email" placeholder="Email Address" class="form-control @error('vendorEmail') is-invalid @enderror" name="vendorEmail" value="{{ old('vendorEmail') }}" required autocomplete="email" autofocus />
+							@error('emvendorEmailail')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>
 							@enderror
-							<input type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
-							@error('password')
+							<input type="password" placeholder="Password" class="form-control @error('vendorPassword') is-invalid @enderror" name="vendorPassword" required autocomplete="current-password"/>
+							@error('vendorPassword')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>
 							@enderror
-							<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-							<label class="form-check-label" for="remember">
-								Keep Me signed in
-							</label>
+					
+                            <span>
+								<input type="checkbox" class="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> 
+								Keep me signed in
+							</span>
+							
 							
 							<button type="submit" class="btn btn-default">Login</button>
 							@if (Route::has('password.request'))
@@ -106,20 +146,6 @@
 							@endif
 						</form>
 					</div><!--/login form-->
-				</div>
-				<div class="col-sm-1">
-					<h2 class="or">OR</h2>
-				</div>
-				<div class="col-sm-4">
-					<div class="signup-form"><!--sign up form-->
-						<h2>New User Signup!</h2>
-						<form action="#">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
-							<button type="submit" class="btn btn-default">Signup</button>
-						</form>
-					</div><!--/sign up form-->
 				</div>
 			</div>
 		</div>

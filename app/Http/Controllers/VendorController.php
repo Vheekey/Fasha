@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+
 
 class VendorController extends Controller
 {
+    //view vendor
+    public function index(){
+        return view('vendor');
+    }
+
     //vendor creates product
     public function uploadProduct(Request $request){
-        // $vendorID = $user->id;
-        $vendorID = 1;
+        $vendorID = Auth::guard('vendor')->user()->id;        
         $productName = $request->prodName;
         $productDesc = $request->prodDesc;
         $productPrice = $request->prodAmount;
@@ -45,14 +51,11 @@ class VendorController extends Controller
     }
 
     //Each Vendor Get Product
-    public function getProducts(Request $request){
-        // $vendorID = $user->id;
-        
-        $vendorID = 1;
-        
+    public function getProducts(Request $request){       
+        $vendorID = Auth::guard('vendor')->user()->id;  
         $token = $request->_token;
 
-        $products = \DB::table('products')->where('vendor_id', '=', '1')
+        $products = \DB::table('products')->where('vendor_id', '=', $vendorID)
                                             ->get();
         if(empty($products)){
             return back()->with('error', 'No records Found');

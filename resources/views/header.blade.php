@@ -61,8 +61,12 @@
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>									
 								<li><a href="{{ url('/checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="{{ url('/cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> Login</a></li>
-							
+								@if (Auth::user() || Auth::guard('vendor')->user() || Auth::guard('admin')->user() )
+								<li><a href="/logout"><i class="fa fa-unlock"></i> Logout</a></li>
+								@else 
+								<li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> User Login</a></li> 
+								<li><a href="{{ url('/vendor-signup') }}"><i class="fa fa-users"></i> Become a Vendor</a></li> 
+								@endif
 							</ul>
 						</div>
 					</div>

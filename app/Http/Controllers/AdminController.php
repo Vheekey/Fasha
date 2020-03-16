@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminController extends Controller
 {
-    //admin get pending products
+     
     public function adminPending(){
         $products = \DB::table('products')->where('productStatus', '=', 'Pending')
                                             ->get();
@@ -14,7 +15,7 @@ class AdminController extends Controller
             return back()->with('error', 'No records Found');
         }else{
             $products = json_decode($products, true);
-            return response()->view('admin', compact('products'), 200);
+            return response()->view('admin', compact('products'), 200);            
         }
     }
 
@@ -26,9 +27,11 @@ class AdminController extends Controller
                                     ->update(['productStatus' => $action]);
         
         if(empty($stat)){
-            return  redirect('admin')->with('error', 'Product already '.$action);
+            // return  redirect('admin')->with('error', 'Product already '.$action);
+            return  back()->with('error', 'Product already '.$action);
         }else{
-            return  redirect('admin')->with('success', 'Product '.$action);
+            // return  redirect('admin')->with('success', 'Product '.$action);
+            return  back()->with('success', 'Product '.$action);
         }
     }
 
